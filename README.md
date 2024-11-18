@@ -11,3 +11,4 @@ Voting System made in C for CSD101
 - [ ] Option for Anonymous Voting and Non-Anonymous Voting
 - [ ] TO BE DECIDED: If voting data is saved outside the program, encrypt it.
 - [ ] Admin Dashboard
+- [ ] Access codes to vote for users - can conduct voting for various stuff simultaneously 
