@@ -25,29 +25,29 @@ int main(){
 	
 	for (int i = 0; i < n; i++){	//loop to take input of n users
 		
-		strcpy(users[n-1].access, "no");;	
+		strcpy(users[i].access, "no");;	
 		
 		printf("Enter name:");
-		scanf(" %[^\n]", users[n-1].name);
+		scanf(" %[^\n]", users[i].name);
 		
 		printf("Email:");
-		scanf("%s", users[n-1].email);
-		strcpy(voters[n-1].email, users[n-1].email);
+		scanf("%s", users[i].email);
+		strcpy(voters[i].email, users[i].email);
 		
 		printf("Password:");
-		scanf("%s", users[n-1].password);
+		scanf("%s", users[i].password);
 		
 		printf("Sex:");
-		scanf(" %[^\n]", users[n-1].sex);
+		scanf(" %[^\n]", users[i].sex);
 		
 		printf("Age:");
-		scanf("%d", &users[n-1].age);
+		scanf("%d", &users[i].age);
 		
 		printf("Access code:");
-		scanf("%s", voters[n-1].access_code);
+		scanf("%s", voters[i].access_code);
 		
 		printf("Vote(yes/no):");
-		scanf("%s", voters[n-1].vote);	
+		scanf("%s", voters[i].vote);	
 	}
 }
 		
