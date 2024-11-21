@@ -3,4 +3,4 @@ project(C_voting_system C)
 
 set(CMAKE_C_STANDARD 17)
 
-add_executable(C_voting_system main.c)
+add_executable(C_voting_system main.c voter_functions.c)
