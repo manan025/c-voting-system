@@ -11,20 +11,12 @@
  */
 
 
-struct Users {
-    char name[100];
-    char email[50];
-    char password[15];
-    char access[5];
-    char sex[10];
-    int age;
-};
-
-struct Votes {
-    char email[50];
-    char access_code[10];
-    char vote[5];
-};
+// HANDLING DATA
+int len_users(user *users) {
+    int n = 0;
+    while (users[n].uid>0) ++n;
+    return n;
+}
 
 int init_data(struct Users *users, struct Votes *votes) {
 }
@@ -45,10 +37,12 @@ int save_votes(struct Votes *votes) {
 
 // --- Authentication STARTS
 
-int login(char *userid, char *pwd) {
+int login(char *userid, char *pwd, struct Users *users) {
+
 }
 
-int signup(char *name, char *userid, char *pwd, char *sex, int *age) {
+int signup(char *name, char *userid, char *pwd, char *sex, int *age, user *users) {
+
 }
 
 int logout() {

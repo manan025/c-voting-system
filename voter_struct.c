@@ -47,7 +47,8 @@ int main(){
 		scanf("%s", voters[i].access_code);
 		
 		printf("Vote(yes/no):");
-		scanf("%s", voters[i].vote);	
+		scanf("%s", voters[i].vote);
+        signup(users[i].name, ...);
 	}
 }
 		
