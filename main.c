@@ -9,7 +9,8 @@ void getPass(char *pwd) {
 
 void auth(user *users, user *active_user) {
     user usr;
-    while (1) {
+    int flag = 0;
+    while (!flag) {
         int ul = len_users(users);
         printf("Are you existing user? ");
         char u;
@@ -17,9 +18,9 @@ void auth(user *users, user *active_user) {
 
         if (u == 'Y') {
             printf("Enter your userid: ");
-            char userid[];
+            char userid[50];
             scanf("%s", userid);
-            char password[];
+            char password[50];
             getPass(password);
 
             // authenticate the user and check
@@ -46,22 +47,40 @@ void auth(user *users, user *active_user) {
             }
             usr.uid = ul + 1;
 
-            if (signup()) {
+            if (signup(usr.name, usr.email, usr.password, usr.sex, usr.age, users)) {
                 printf("Signup failed. Please try later.");
             } else {
                 printf("Signup Successful. Logging you in...");
                 // TODO: sign in successful. What next? login?
+                flag = 1;
             }
 
         } else if (u == 'D') {
             break;
         } else {
-            printf("Wrong Input, please try again.");
+            printf("Wrong Input, please try again.\n");
         }
     }
 }
 
-void menu(user active_user) {
+void user_menu(user active_user) {
+    while (active_user.uid) {
+        printf("Enter access code: ");
+        int access_code;
+        scanf("%d", &access_code);
+        // TODO: Check if valid access code
+        if (access_code) {
+            printf("Options:\n");
+            printf("1. Cast Vote\n2. View Results\n3. Logout\n> ");
+            int op;
+            scanf("%d", &op);
+        } else {
+            printf("Invalid access code.\n");
+        }
+    }
+}
+
+void admin_menu(user active_user) {
     while (active_user.uid) {
 
     }
@@ -75,6 +94,8 @@ int main(void) {
     init_data(users, votes);
 
     user curr;
+
+    printf("INIT: %d", len_users(users) );
 
     auth(users, &curr);
 

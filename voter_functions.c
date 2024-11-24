@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "voter.h"
 #include <stdlib.h>
-#include <secure/_string.h>
+#include <string.h>
 /*
 * Functions for voters:
 * - save voter data
@@ -25,7 +25,7 @@ int len_votes(vote *votes) {
     return n;
 }
 
-int init_data(user *users, struct vote *votes) {
+int init_data(user *users, vote *votes) {
     FILE *vote_file, *user_file;
     if ((vote_file = fopen("votes.bin", "rb")) == NULL) {
         return 1;
@@ -57,6 +57,10 @@ int save_votes(vote *votes) {
     return 0;
 }
 
+int checkProgress() {
+
+}
+
 // --- Authentication STARTS
 
 int login(char *userid, char *pwd, user *users, user *active_user) {
@@ -73,7 +77,7 @@ int login(char *userid, char *pwd, user *users, user *active_user) {
 }
 
 int signup(char *name, char *userid, char *pwd, char *sex, int age, user *users) {
-    int l = len_users(users);
+    int l = len_users(users) + 1;
     strcpy(users[l].name, name);
     strcpy(users[l].email, userid);
     strcpy(users[l].password, pwd);
@@ -85,8 +89,10 @@ int signup(char *name, char *userid, char *pwd, char *sex, int age, user *users)
     if ((user_file = fopen("users.bin", "wb")) == NULL) {
         return 1;
     }
+    printf("USER: %d", l);
+    fwrite(&users, sizeof(struct Users), len_users(users)+1, user_file);
 
-    fwrite(&users, sizeof(struct Users), len_users(users), user_file);
+    fclose(user_file);
 
     return 0;
 
@@ -97,3 +103,14 @@ int logout() {
 }
 
 // --- Authentication ENDS
+
+// --- ADMIN section STARTS
+
+int add_question(char *q, char *options, char *access_code) {
+    return 0;
+}
+
+int listUsers() {
+
+}
+
