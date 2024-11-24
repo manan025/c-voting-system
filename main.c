@@ -7,16 +7,8 @@ void getPass(char *pwd) {
     scanf("%s", pwd);
 }
 
-
-
-int main(void) {
-
+void auth(user *users, user *active_user) {
     user usr;
-    user users[1000];
-    vote votes[1000];
-
-    init_data(users, votes);
-
     while (1) {
         int ul = len_users(users);
         printf("Are you existing user? ");
@@ -31,22 +23,22 @@ int main(void) {
             getPass(password);
 
             // authenticate the user and check
-            
+
         } else if (u == 'N'){
             // register the user
 
             printf("Enter name:");
             scanf(" %[^\n]", usr.name);
-		
+
             printf("Email:");
             scanf("%s", usr.email);
-		
+
             printf("Password:");
             scanf("%s", usr.password);
-		
+
             printf("Sex:");
             scanf(" %[^\n]", usr.sex);
-		
+
             printf("Age:");
             scanf("%d", &usr.age);
             if (usr.age < 18) {
@@ -60,13 +52,33 @@ int main(void) {
                 printf("Signup Successful. Logging you in...");
                 // TODO: sign in successful. What next? login?
             }
-            
+
         } else if (u == 'D') {
             break;
         } else {
             printf("Wrong Input, please try again.");
         }
     }
+}
+
+void menu(user active_user) {
+    while (active_user.uid) {
+
+    }
+}
+
+int main(void) {
+
+    user users[1000];
+    vote votes[1000];
+
+    init_data(users, votes);
+
+    user curr;
+
+    auth(users, &curr);
+
+
 
     // debug code
     struct x {
