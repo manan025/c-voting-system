@@ -19,13 +19,13 @@ int len_users(user *users) {
     return n;
 }
 
-int len_votes(votes *vote) {
+int len_votes(vote *votes) {
     int n = 0;
-    while (vote[n].uid>0) ++n;
+    while (votes[n].uid>0) ++n;
     return n;
 }
 
-int init_data(struct Users *users, struct Votes *votes) {
+int init_data(user *users, struct vote *votes) {
     FILE *vote_file, *user_file;
     if ((vote_file = fopen("votes.bin", "rb")) == NULL) {
         return 1;
@@ -40,15 +40,15 @@ int init_data(struct Users *users, struct Votes *votes) {
 }
 
 
-int vote(char *userid, char *access_code, char *vote_code) {
+int cast_vote(char *userid, char *access_code, char *vote_code) {
     /*
    * Function to vote
    * Required Parameters: userid, access_code, vote_code
-   * Returns: 0 if success, 1 if access code wrong, 2 if vote_code is invalid
      */
+
 }
 
-int save_votes(votes *votes) {
+int save_votes(vote *votes) {
     FILE *vote_file;
     if ((vote_file = fopen("temp.bin", "wb")) == NULL) {
         return 1;
@@ -59,8 +59,17 @@ int save_votes(votes *votes) {
 
 // --- Authentication STARTS
 
-int login(char *userid, char *pwd, struct Users *users) {
+int login(char *userid, char *pwd, user *users, user *active_user) {
+    int n = 0;
 
+    while (users[n].uid) {
+        if (users[n].email == userid && users[n].password == pwd) {
+            active_user = &users[n];
+            return 0;
+        }
+        ++n;
+    }
+    return 1;
 }
 
 int signup(char *name, char *userid, char *pwd, char *sex, int age, user *users) {
@@ -84,6 +93,7 @@ int signup(char *name, char *userid, char *pwd, char *sex, int age, user *users)
 }
 
 int logout() {
+    return 0;
 }
 
 // --- Authentication ENDS

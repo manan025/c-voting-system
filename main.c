@@ -7,24 +7,15 @@ void getPass(char *pwd) {
     scanf("%s", pwd);
 }
 
-/*typedef struct User {
-    int uid;
-    char name[100];
-    char email[50];
-    char password[15];
-    char access[5];
-    char role;
-    char sex[10];
-    int age;
-}User;*/
-
 
 
 int main(void) {
 
     user usr;
     user users[1000];
+    vote votes[1000];
 
+    init_data(users, votes);
 
     while (1) {
         int ul = len_users(users);

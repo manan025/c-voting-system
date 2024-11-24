@@ -21,7 +21,7 @@ typedef struct Votes {
     char email[50];
     char access_code[10];
     char vote[5];
-} votes;
+} vote;
 
 typedef struct questions {
     char uid;
@@ -29,8 +29,8 @@ typedef struct questions {
     char options[][];
 };
 
-int init_data(struct Users, struct Votes);
-int vote(char*, char*, char*);
+int init_data(user*, vote*);
+int cast_vote(char*, char*, char*);
 int login(char*, char*);
 int signup();
 int logout();
